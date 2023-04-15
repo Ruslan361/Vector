@@ -1,0 +1,12 @@
+﻿  main.cpp
+C:\Users\Professional\source\repos\Vector\Vector\Vector.hpp(97,1): warning C4812: obsolete declaration style: please use 'Vector<T>::Vector' instead
+C:\Users\Professional\source\repos\Vector\Vector\main.cpp(8,16): warning C4267: '=': conversion from 'size_t' to 'T', possible loss of data
+          with
+          [
+              T=int
+          ]
+C:\Users\Professional\source\repos\Vector\Vector\Vector.hpp(97,1): warning C4812: obsolete declaration style: please use 'Vector<int>::Vector' instead
+C:\Users\Professional\source\repos\Vector\Vector\Vector.hpp(97,48): message : while compiling class template member function 'Vector<int>::Vector(const Vector<int> &)'
+C:\Users\Professional\source\repos\Vector\Vector\main.cpp(10,14): message : see reference to function template instantiation 'Vector<int>::Vector(const Vector<int> &)' being compiled
+C:\Users\Professional\source\repos\Vector\Vector\main.cpp(5,21): message : see reference to class template instantiation 'Vector<int>' being compiled
+  Vector.vcxproj -> C:\Users\Professional\source\repos\Vector\x64\Debug\Vector.exe
