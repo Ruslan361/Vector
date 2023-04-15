@@ -38,17 +38,22 @@ public:
 		delete[] _array;
 		count = 0;
 	}
+	void push_back(const T& element);
 	T& getBack() {
 		return _array[count - 1];
 	}
 	T& getFront() {
 		return _array[0];
 	}
-	const bool operator==(const Vector<T> _vector) const;
+	const bool operator==(const Vector<T>& _vector) const;
 	void resize(size_t size);
-	const bool operator!=(const Vector<T> _vector) const;
+	const bool operator!=(const Vector<T>& _vector) const;
 	Vector<T>& operator-= (const Vector<T>& _vector);
 	Vector<T>& operator=(const Vector<T>& _vector);
+	const bool operator<= (const Vector<T>& _vector) const;
+	const bool operator>= (const Vector<T>& _vector) const;
+	const bool operator< (const Vector<T>& _vector) const;
+	const bool operator> (const Vector<T>& _vector) const;
 	const Vector<T> operator+ (const Vector<T>& _vector) const;
 	const Vector<T> operator* (const T& scalar) const;
 	const Vector<T> operator- (const Vector<T>& _vecctor) const;
@@ -234,7 +239,7 @@ const Vector<T> Vector<T>::operator++(int) {
 }
 
 template <typename T>
-const bool Vector<T>::operator==(const Vector<T> _vector) const {
+const bool Vector<T>::operator==(const Vector<T>& _vector) const {
 	if (count != _vector.count)
 		return false;
 	for (size_t i = 0; i < count; i++)
@@ -245,7 +250,7 @@ const bool Vector<T>::operator==(const Vector<T> _vector) const {
 	return true;
 }
 template <typename T>
-const bool Vector<T>::operator!=(const Vector<T> _vector) const {
+const bool Vector<T>::operator!=(const Vector<T>& _vector) const {
 	return !(*this == _vector);
 }
 
@@ -258,4 +263,53 @@ void Vector<T>::resize(size_t size) {
 	_array = new T[size];
 	size_t min = size < count ? size : count;
 	memcpy(_array, temp._array, (min * sizeof(T)));
+	count = size;
+}
+
+template <typename T>
+const bool Vector<T>::operator<= (const Vector<T>& _vector) const {
+	return !(*this > _vector);
+}
+
+template <typename T>
+const bool Vector<T>::operator>= (const Vector<T>& _vector) const {
+	return !(*this < _vector);
+}
+
+template <typename T>
+const bool Vector<T>::operator< (const Vector<T>& _vector) const {
+	if (count > _vector.count)
+		return false;
+	if (count < _vector.count)
+		return true;
+	for (size_t i = 0; i < count; i++)
+	{
+		if (_array[i] < _vector._array[i])
+			return true;
+		else if (_array[i] > _vector._array[i])
+			return false;
+	}
+	return false;
+}
+
+template <typename T>
+const bool Vector<T>::operator> (const Vector<T>& _vector) const {
+	if (count > _vector.count)
+		return true;
+	if (count < _vector.count)
+		return false;
+	for (size_t i = 0; i < count; i++)
+	{
+		if (_array[i] > _vector._array[i])
+			return true;
+		else if (_array[i] < _vector._array[i])
+			return false;
+	}
+	return false;
+}
+
+template <typename T>
+void Vector<T>::push_back(const T& element) {
+	resize(count + 1);
+	getBack() = element;
 }
