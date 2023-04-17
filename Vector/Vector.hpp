@@ -35,7 +35,8 @@ public:
 		return _array[index];
 	}
 	~Vector() {
-		delete[] _array;
+		if (_array != nullptr)
+			delete[] _array;
 		count = 0;
 	}
 	void push_back(const T& element);
